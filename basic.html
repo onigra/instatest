@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>InstaTest</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+          jQuery(document).ready(function(){
+              var clientId = '';
+              var tagName = 'cat';
+              var jsonUrl = 'https://api.instagram.com/v1/tags/' + tagName + '/media/recent?client_id=' + clientId + '&callback=?';
+              jQuery.getJSON(jsonUrl, function(json, status) {
+                  console.log(jsonUrl);
+                  for (i in json.data) {
+                  jQuery('#picture').prepend(
+                    '<img frame="'+json.data[i].images.thumbnail.url+'" src="'+json.data[i].images.standard_resolution.url+'" title="" />')
+                  }
+              });
+          });
+    </script>
+    <div id="picture"></div>
+  </body>
+</html>
+
